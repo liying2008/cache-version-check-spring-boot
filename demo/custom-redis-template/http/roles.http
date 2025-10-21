@@ -1,0 +1,43 @@
+@defaultName = role1
+
+### find by id
+GET http://localhost:8082/roles/1
+Content-Type: application/json
+
+### find by name
+GET http://localhost:8082/roles/name/{{defaultName}}
+Content-Type: application/json
+
+### find all
+GET http://localhost:8082/roles
+Content-Type: application/json
+
+### add default role
+POST http://localhost:8082/roles
+Content-Type: application/json
+
+{
+    "name": "{{defaultName}}",
+    "description": "default role"
+}
+
+### add a role
+POST http://localhost:8082/roles
+Content-Type: application/json
+
+{
+    "name": "{{$random.name}}",
+    "description": "a new role"
+}
+
+### update a role
+PUT http://localhost:8082/roles/2
+Content-Type: application/json
+
+{
+    "name": "{{$random.name}}",
+    "description": "a new role"
+}
+
+### delete a role
+DELETE http://localhost:8082/roles/2

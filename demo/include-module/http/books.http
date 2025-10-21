@@ -1,0 +1,43 @@
+@defaultName = book1
+
+### find by id
+GET http://localhost:8083/books/1
+Content-Type: application/json
+
+### find by name
+GET http://localhost:8083/books/name/{{defaultName}}
+Content-Type: application/json
+
+### find all
+GET http://localhost:8083/books
+Content-Type: application/json
+
+### add default book
+POST http://localhost:8083/books
+Content-Type: application/json
+
+{
+    "name": "{{defaultName}}",
+    "author": "someone"
+}
+
+### add a book
+POST http://localhost:8083/books
+Content-Type: application/json
+
+{
+    "name": "{{$random.name}}",
+    "author": "someone"
+}
+
+### update a book
+PUT http://localhost:8083/books/2
+Content-Type: application/json
+
+{
+    "name": "{{$random.name}}",
+    "author": "someone"
+}
+
+### delete a book
+DELETE http://localhost:8083/books/2

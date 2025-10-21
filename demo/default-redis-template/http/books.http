@@ -1,0 +1,51 @@
+@defaultName = book1
+
+### find by id
+GET http://localhost:8081/books/1
+Content-Type: application/json
+
+### find by name
+GET http://localhost:8081/books/name/{{defaultName}}
+Content-Type: application/json
+
+### find all
+GET http://localhost:8081/books
+Content-Type: application/json
+
+### add default book
+POST http://localhost:8081/books
+Content-Type: application/json
+
+{
+    "name": "{{defaultName}}",
+    "author": "someone"
+}
+
+### add a book
+< {%
+    const randomName = $random.name
+    request.variables.set("randomName", randomName)
+%}
+POST http://localhost:8081/books
+Content-Type: application/json
+
+{
+    "name": "{{randomName}}",
+    "author": "someone"
+}
+
+### update a book
+< {%
+    const randomName = $random.name
+    request.variables.set("randomName", randomName)
+%}
+PUT http://localhost:8081/books/2
+Content-Type: application/json
+
+{
+    "name": "{{randomName}}",
+    "author": "someone"
+}
+
+### delete a book
+DELETE http://localhost:8081/books/2

@@ -1,0 +1,51 @@
+@defaultName = user1
+
+### find by id
+GET http://localhost:8081/users/1
+Content-Type: application/json
+
+### find by name
+GET http://localhost:8081/users/name/{{defaultName}}
+Content-Type: application/json
+
+### find all
+GET http://localhost:8081/users
+Content-Type: application/json
+
+### add default user
+POST http://localhost:8081/users
+Content-Type: application/json
+
+{
+    "name": "{{defaultName}}",
+    "createAt": ""
+}
+
+### add a user
+< {%
+    const randomName = $random.name
+    request.variables.set("randomName", randomName)
+%}
+POST http://localhost:8081/users
+Content-Type: application/json
+
+{
+    "name": "{{randomName}}",
+    "createAt": ""
+}
+
+### update a user
+< {%
+    const randomName = $random.name
+    request.variables.set("randomName", randomName)
+%}
+PUT http://localhost:8081/users/2
+Content-Type: application/json
+
+{
+    "name": "{{randomName}}",
+    "createAt": ""
+}
+
+### delete a user
+DELETE http://localhost:8081/users/2
